@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BpmCalculatorComponent } from './bpm-calculator/bpm-calculator.component';
-import {MatButtonModule, MatDividerModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatDividerModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import {MatButtonModule, MatDividerModule} from '@angular/material';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

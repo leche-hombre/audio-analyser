@@ -21,20 +21,20 @@ export class BpmCalculatorComponent implements OnInit {
   calculateBeatsPerMinute(millisecondsSinceLastBeat: number[]): number {
     const sumOfBeats = millisecondsSinceLastBeat.reduce(((previousValue, currentValue) => previousValue + currentValue),
       this.defaultBeatsPerMinute);
-    return (sumOfBeats / millisecondsSinceLastBeat.length);
+    return 60 / (sumOfBeats / millisecondsSinceLastBeat.length);
   }
 
   setBeatsPerMinute() {
     this.appendMillisecondsSinceLastBeat();
     if (this.millisecondsSinceLastBeat.length >= 2) {
-      this.beatsPerMinute = this.calculateBeatsPerMinute(this.millisecondsSinceLastBeat);
+      this.beatsPerMinute = Math.floor(this.calculateBeatsPerMinute(this.millisecondsSinceLastBeat));
     }
   }
 
   appendMillisecondsSinceLastBeat() {
     const currentTime = new Date().getTime();
     if (this.lastBeatTime) {
-      const timeDifference = currentTime - this.lastBeatTime;
+      const timeDifference = (currentTime - this.lastBeatTime) / 1000;
       this.millisecondsSinceLastBeat.push(timeDifference);
     }
     this.lastBeatTime = currentTime;
@@ -43,6 +43,7 @@ export class BpmCalculatorComponent implements OnInit {
   private resetBeatsPerMinute() {
     this.millisecondsSinceLastBeat = [];
     this.lastBeatTime = 0;
+    this.beatsPerMinute = this.defaultBeatsPerMinute;
   }
 
 }
