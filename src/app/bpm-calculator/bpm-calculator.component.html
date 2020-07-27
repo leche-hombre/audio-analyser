@@ -1,0 +1,8 @@
+<section>
+  <div>
+    <button mat-stroked-button (click)="setBeatsPerMinute()">Calculate BPM</button>
+    <h1>{{beatsPerMinute || defaultBeatsPerMinute}}</h1>
+    <button mat-stroked-button (click)="resetBeatsPerMinute()">Reset BPM</button>
+    <p>MS since last beat: {{millisecondsSinceLastBeat.toString()}}</p>
+  </div>
+</section>
