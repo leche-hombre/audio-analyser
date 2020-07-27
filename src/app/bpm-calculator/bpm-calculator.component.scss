@@ -1,8 +1,5 @@
-//button, h1 {
-//  display: inline-block;
-//  margin-right: 10px;
-//}
-//
-//mat-card {
-//  width: auto;
-//}
+mat-card {
+  display: flex;
+  width: 50vw;
+  justify-content: space-between;
+}

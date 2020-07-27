@@ -12,6 +12,7 @@ export class BpmCalculatorComponent implements OnInit {
   private millisecondsSinceLastBeat: number[] = [];
   private lastBeatTime: number;
 
+
   constructor() {
   }
 
