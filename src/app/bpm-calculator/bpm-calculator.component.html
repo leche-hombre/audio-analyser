@@ -1,6 +1,6 @@
 <section>
   <mat-card>
-    <button mat-stroked-button matTooltip="Click in time with the beat of the song" (click)="setBeatsPerMinute()">Calculate BPM</button>
+    <button mat-stroked-button matTooltip="Click in time with the beat" (click)="setBeatsPerMinute()">Calculate BPM</button>
     <h1>{{beatsPerMinute || defaultBeatsPerMinute}}</h1>
     <button mat-stroked-button (click)="resetBeatsPerMinute()">Reset BPM</button>
   </mat-card>
