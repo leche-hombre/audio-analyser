@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "virtual-dj"
+  "defaultProject": "virtual-dj",
+  "cli": {
+    "analytics": "e3673447-4f78-4edb-831e-ffa00e90015a"
+  }
 }

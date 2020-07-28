@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class BpmCalculatorComponent implements OnInit {
 
   beatsPerMinute: number;
-  private defaultBeatsPerMinute = 0;
+  defaultBeatsPerMinute = 0;
   private millisecondsSinceLastBeat: number[] = [];
   private lastBeatTime: number;
 
@@ -32,7 +32,7 @@ export class BpmCalculatorComponent implements OnInit {
     }
   }
 
-  appendMillisecondsSinceLastBeat() {
+  private appendMillisecondsSinceLastBeat() {
     const currentTime = new Date().getTime();
     if (this.lastBeatTime) {
       const timeDifference = (currentTime - this.lastBeatTime) / 1000;
@@ -41,7 +41,7 @@ export class BpmCalculatorComponent implements OnInit {
     this.lastBeatTime = currentTime;
   }
 
-  private resetBeatsPerMinute() {
+  resetBeatsPerMinute() {
     this.millisecondsSinceLastBeat = [];
     this.lastBeatTime = 0;
     this.beatsPerMinute = this.defaultBeatsPerMinute;
