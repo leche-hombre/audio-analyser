@@ -16,16 +16,14 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import { MenuComponent } from './menu/menu.component';
+import { FileDropzoneComponent } from './file-dropzone/file-dropzone.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BpmCalculatorComponent,
-    MenuComponent
-  ],
-  exports: [
-    BpmCalculatorComponent,
-    MenuComponent
+    MenuComponent,
+    FileDropzoneComponent
   ],
   imports: [
     BrowserModule,
