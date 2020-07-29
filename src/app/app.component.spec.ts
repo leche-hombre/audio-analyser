@@ -1,16 +1,24 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import {MenuComponent} from './menu/menu.component';
+import {BpmCalculatorComponent} from './bpm-calculator/bpm-calculator.component';
+import {MatCardModule, MatIconModule, MatMenuModule} from '@angular/material';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        MatIconModule,
+        MatMenuModule,
+        MatCardModule
       ],
       declarations: [
-        AppComponent
-      ],
+        AppComponent,
+        MenuComponent,
+        BpmCalculatorComponent
+      ]
     }).compileComponents();
   }));
 
@@ -24,12 +32,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('virtual-dj');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('virtual-dj app is running!');
   });
 });

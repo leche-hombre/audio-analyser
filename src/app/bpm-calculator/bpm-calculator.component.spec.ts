@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BpmCalculatorComponent } from './bpm-calculator.component';
+import {MatCardModule} from '@angular/material';
 
 const beatsPerMinuteValues = [0.45, 0.45, 0.45];
 const minimumBeatsRequired = 2;
@@ -11,7 +12,8 @@ describe('BpmCalculatorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BpmCalculatorComponent ]
+      declarations: [ BpmCalculatorComponent ],
+      imports: [MatCardModule]
     })
     .compileComponents();
   }));
