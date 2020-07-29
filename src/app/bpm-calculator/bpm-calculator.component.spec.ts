@@ -28,7 +28,7 @@ describe('BpmCalculatorComponent', () => {
 
   it('calculates BPM', () => {
     const sumOfBeatsPerMinute = beatsPerMinuteValues.reduce(((previousValue, currentValue) => previousValue + currentValue), 0);
-    const expectedBeatsPerMinute = sumOfBeatsPerMinute / beatsPerMinuteValues.length;
+    const expectedBeatsPerMinute = 60 / (sumOfBeatsPerMinute / beatsPerMinuteValues.length);
     const result = component.calculateBeatsPerMinute(beatsPerMinuteValues);
     expect(result).toEqual(expectedBeatsPerMinute);
   });

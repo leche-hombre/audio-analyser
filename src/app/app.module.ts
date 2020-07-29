@@ -1,14 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { BpmCalculatorComponent } from './bpm-calculator/bpm-calculator.component';
-import {MatButtonModule, MatCardModule, MatDividerModule, MatTooltipModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatTooltipModule} from '@angular/material';
 
 @NgModule({
   declarations: [

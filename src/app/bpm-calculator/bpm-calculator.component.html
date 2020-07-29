@@ -1,7 +1,5 @@
-<section>
-  <mat-card>
-    <button mat-stroked-button matTooltip="Click in time with the beat" (click)="setBeatsPerMinute()">Calculate BPM</button>
-    <h1>{{beatsPerMinute || defaultBeatsPerMinute}}</h1>
-    <button mat-stroked-button (click)="resetBeatsPerMinute()">Reset BPM</button>
-  </mat-card>
-</section>
+<mat-card>
+  <button mat-stroked-button matTooltip="Click in time with the beat" (click)="setBeatsPerMinute()">Calculate BPM</button>
+  <h1 [ngClass]="{'visual-bpm': beatsPerMinute > defaultBeatsPerMinute}" [style.animation]="beatsPerMinute > 0 ? 'pulse ' + 60/beatsPerMinute + 's infinite' : 0" >{{beatsPerMinute || defaultBeatsPerMinute}}</h1>
+  <button mat-stroked-button (click)="resetBeatsPerMinute()">Reset BPM</button>
+</mat-card>
