@@ -12,6 +12,7 @@ export class BpmCalculatorComponent implements OnInit {
   defaultBeatsPerMinute = 0;
   private millisecondsSinceLastBeat: number[] = [];
   private lastBeatTime: number;
+  private minimumBeatsRequired = 2;
 
 
   constructor() {
@@ -28,7 +29,7 @@ export class BpmCalculatorComponent implements OnInit {
 
   setBeatsPerMinute() {
     this.appendMillisecondsSinceLastBeat();
-    if (this.millisecondsSinceLastBeat.length >= 2) {
+    if (this.millisecondsSinceLastBeat.length >= this.minimumBeatsRequired) {
       this.beatsPerMinute = Math.floor(this.calculateBeatsPerMinute(this.millisecondsSinceLastBeat));
     }
   }

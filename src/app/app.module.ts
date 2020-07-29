@@ -6,12 +6,22 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BpmCalculatorComponent } from './bpm-calculator/bpm-calculator.component';
-import {MatButtonModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatTooltipModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDividerModule,
+  MatFormFieldModule, MatIconModule,
+  MatInputModule,
+  MatMenuModule,
+  MatTooltipModule
+} from '@angular/material';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BpmCalculatorComponent
+    BpmCalculatorComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +32,9 @@ import {MatButtonModule, MatCardModule, MatDividerModule, MatFormFieldModule, Ma
     MatButtonModule,
     MatDividerModule,
     MatCardModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
