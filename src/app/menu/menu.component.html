@@ -1,0 +1,22 @@
+<header>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a routerLink="/">
+    <span class="title">{{title}}</span>
+  </a>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>accessibility</mat-icon>
+      <span>Option 1</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>accessibility</mat-icon>
+      <span>Option 2</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>accessibility</mat-icon>
+      <span>Option 3</span>
+    </button>
+  </mat-menu>
+</header>
