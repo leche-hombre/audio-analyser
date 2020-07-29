@@ -1,1 +1,6 @@
-<p>file-dropzone works!</p>
+<div id="file-dropzone">
+  <span>Drag a song here!</span>
+  <span>or</span>
+  <button mat-stroked-button (click)="fileInput.click()" id="uploadFile">Upload file</button>
+  <input hidden type="file" accept="audio/*" id="file" #fileInput>
+</div>
