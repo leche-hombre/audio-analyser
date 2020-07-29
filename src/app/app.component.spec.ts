@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import {MenuComponent} from './menu/menu.component';
 import {BpmCalculatorComponent} from './bpm-calculator/bpm-calculator.component';
 import {MatCardModule, MatIconModule, MatMenuModule} from '@angular/material';
+import {FileDropzoneComponent} from './file-dropzone/file-dropzone.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -17,7 +18,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         MenuComponent,
-        BpmCalculatorComponent
+        BpmCalculatorComponent,
+        FileDropzoneComponent
       ]
     }).compileComponents();
   }));
