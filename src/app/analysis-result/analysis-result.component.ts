@@ -16,6 +16,13 @@ export class AnalysisResultComponent implements OnInit {
     this.analysis = this.audioAnalyserService.analyseAudioFile({} as File);
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  showWaveform() {
+    this.audioAnalyserService.displayWaveForm('/Users/jacobmontgomery/Documents/Music/House/Carl Cox - Nexus.mp3', {
+      waveformColor: 'violet',
+      container: '#waveform',
+      progressColor: 'purple'
+    });
   }
 }

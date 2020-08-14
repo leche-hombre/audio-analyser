@@ -1,6 +1,8 @@
 import {AudioAnalysis} from './audio-analysis';
 import {DefaultAnalysis} from './default-analysis';
 import {Injectable} from '@angular/core';
+import WaveSurfer from 'wavesurfer.js';
+import {WaveformSettings} from './waveform-settings';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,7 @@ export class AudioAnalyserService {
       title: this.getTitle(),
       artist: this.getArtist(),
       bpm: this.getBeatsPerMinute(),
-      key: this.getKey(),
-      waveform: this.getWaveform()
+      key: this.getKey()
     };
   }
 
@@ -35,8 +36,14 @@ export class AudioAnalyserService {
     return DefaultAnalysis.key;
   }
 
-  getWaveform() {
-    return DefaultAnalysis.waveform;
+  displayWaveForm(audioFilePath: string, waveformSettings: WaveformSettings) {
+    const waveSurfer = WaveSurfer.create({
+      ...waveformSettings
+    });
+    waveSurfer.load(audioFilePath);
+    waveSurfer.on('ready', () => {
+      waveSurfer.play();
+    });
   }
 
 }

@@ -2,5 +2,6 @@
   <h1>{{analysis.title}} by {{analysis.artist}}</h1>
   <p>BPM: {{analysis.bpm}}</p>
   <p>KEY: {{analysis.key}}</p>
-  <div>{{analysis.waveform}}</div>
+  <div id="waveform"></div>
+  <button (click)="showWaveform()">WAVEFORM BUTTON</button>
 </mat-card>

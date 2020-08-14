@@ -3,5 +3,4 @@ export interface AudioAnalysis {
   bpm: number;
   artist?: string;
   key?: string;
-  waveform?: any;
 }
