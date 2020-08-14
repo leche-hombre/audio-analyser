@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DefaultAnalysis} from '../default-analysis';
-import {Analysis} from '../analysis';
+import {AudioAnalysis} from '../audio-analysis';
+import {AudioAnalyserService} from '../audio-analyser.service';
 
 @Component({
   selector: 'app-analysis-result',
@@ -9,10 +10,10 @@ import {Analysis} from '../analysis';
 })
 export class AnalysisResultComponent implements OnInit {
 
-  analysis: Analysis;
+  analysis: AudioAnalysis;
 
-  constructor() {
-    this.analysis = DefaultAnalysis;
+  constructor(private audioAnalyserService: AudioAnalyserService) {
+    this.analysis = this.audioAnalyserService.analyseAudioFile({} as File);
   }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-export interface Analysis {
+export interface AudioAnalysis {
   title: string;
   bpm: number;
   artist?: string;
