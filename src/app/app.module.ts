@@ -17,13 +17,15 @@ import {
 } from '@angular/material';
 import { MenuComponent } from './menu/menu.component';
 import { FileDropzoneComponent } from './file-dropzone/file-dropzone.component';
+import { AnalysisResultComponent } from './analysis-result/analysis-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BpmCalculatorComponent,
     MenuComponent,
-    FileDropzoneComponent
+    FileDropzoneComponent,
+    AnalysisResultComponent
   ],
   imports: [
     BrowserModule,
