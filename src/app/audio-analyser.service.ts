@@ -3,7 +3,7 @@ import {DefaultAnalysis} from './default-analysis';
 import {Injectable} from '@angular/core';
 import WaveSurfer from 'wavesurfer.js';
 import {WaveformSettings} from './waveform-settings';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable, ReplaySubject, Subject} from 'rxjs';
 import {FileUtils} from './file-utils';
 
 @Injectable({
@@ -12,12 +12,11 @@ import {FileUtils} from './file-utils';
 export class AudioAnalyserService {
 
   waveSurfer;
-
-  audioSourceURL: BehaviorSubject<File> = new BehaviorSubject(new File([], ''));
+  audioFile: BehaviorSubject<File> = new BehaviorSubject(new File([], ''));
 
   constructor(private fileUtils: FileUtils) {}
 
-  analyseAudioFile(audioFile: File): AudioAnalysis {
+  analyseAudioFile(): AudioAnalysis {
     return {
       title: this.getTitleFromFilename(),
       bpm: this.getBeatsPerMinute(),
@@ -26,7 +25,7 @@ export class AudioAnalyserService {
   }
 
   getTitleFromFilename(): string {
-    return this.fileUtils.removeFileExtension(this.audioSourceURL.value.name);
+    return this.fileUtils.removeFileExtension(this.audioFile.value.name);
   }
 
   getArtist(): string {
@@ -46,7 +45,7 @@ export class AudioAnalyserService {
       ...waveformSettings
     });
 
-    const blobAudioURL = this.audioSourceURL.value;
+    const blobAudioURL = this.audioFile.value;
 
     const fileReader = new FileReader();
     fileReader.readAsDataURL(blobAudioURL);
@@ -62,8 +61,8 @@ export class AudioAnalyserService {
     }
   }
 
-  updateAudioSourceURL(audioSourceURL: File) {
-    this.audioSourceURL.next(audioSourceURL);
+  updateAudioFile(audioSourceFile: File) {
+    this.audioFile.next(audioSourceFile);
   }
 
 }

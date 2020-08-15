@@ -12,18 +12,18 @@ export class AnalysisResultComponent implements OnInit {
   analysis: AudioAnalysis;
 
   constructor(private audioAnalyserService: AudioAnalyserService) {
-    this.analysis = this.audioAnalyserService.analyseAudioFile({} as File);
   }
 
   ngOnInit() {
-    this.audioAnalyserService.audioSourceURL.subscribe(() => {
+    this.audioAnalyserService.audioFile.subscribe(() => {
+      // TODO: Prevent this from happening until the first audio file is available
       this.updateAudioInfo();
       this.updateWaveForm();
     });
   }
 
   updateAudioInfo() {
-    this.analysis.title = this.audioAnalyserService.getTitleFromFilename();
+    this.analysis = this.audioAnalyserService.analyseAudioFile();
   }
 
   updateWaveForm() {
