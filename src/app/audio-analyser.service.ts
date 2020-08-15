@@ -12,7 +12,7 @@ export class AudioAnalyserService {
 
   waveSurfer;
 
-  private audioSourceURL: BehaviorSubject<File> = new BehaviorSubject(new File([], ''));
+  audioSourceURL: BehaviorSubject<File> = new BehaviorSubject(new File([], ''));
 
   constructor() {}
 
