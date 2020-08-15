@@ -19,6 +19,7 @@ import { MenuComponent } from './menu/menu.component';
 import { FileDropzoneComponent } from './file-dropzone/file-dropzone.component';
 import { AnalysisResultComponent } from './analysis-result/analysis-result.component';
 import {AudioAnalyserService} from './audio-analyser.service';
+import {FileUtils} from './file-utils';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import {AudioAnalyserService} from './audio-analyser.service';
     MatMenuModule,
     MatIconModule
   ],
-  providers: [AudioAnalyserService],
+  providers: [AudioAnalyserService, FileUtils],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

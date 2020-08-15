@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import WaveSurfer from 'wavesurfer.js';
 import {WaveformSettings} from './waveform-settings';
 import {BehaviorSubject} from 'rxjs';
+import {FileUtils} from './file-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +15,18 @@ export class AudioAnalyserService {
 
   audioSourceURL: BehaviorSubject<File> = new BehaviorSubject(new File([], ''));
 
-  constructor() {}
+  constructor(private fileUtils: FileUtils) {}
 
   analyseAudioFile(audioFile: File): AudioAnalysis {
     return {
-      title: this.getTitle(),
-      artist: this.getArtist(),
+      title: this.getTitleFromFilename(),
       bpm: this.getBeatsPerMinute(),
       key: this.getKey()
     };
   }
 
-  getTitle(): string {
-    return DefaultAnalysis.title;
+  getTitleFromFilename(): string {
+    return this.fileUtils.removeFileExtension(this.audioSourceURL.value.name);
   }
 
   getArtist(): string {
