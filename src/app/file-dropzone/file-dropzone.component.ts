@@ -46,9 +46,7 @@ export class FileDropzoneComponent implements OnInit {
 
     if (this.files.length > 0) {
       console.log(`Found ${this.files.length} file${this.files.length > 1 ? 's' : ''}.`);
-      // const fileSourceURL = URL.createObjectURL();
       this.audioAnalyserService.updateAudioSourceURL(this.files[0]);
-      // console.log(`SOURCE URL: ${fileSourceURL}`);
     }
 
     console.log('dropping file');

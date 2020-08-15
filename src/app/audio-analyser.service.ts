@@ -10,6 +10,8 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class AudioAnalyserService {
 
+  waveSurfer;
+
   private audioSourceURL: BehaviorSubject<File> = new BehaviorSubject(new File([], ''));
 
   constructor() {}
@@ -40,7 +42,7 @@ export class AudioAnalyserService {
   }
 
   displayWaveForm(waveformSettings: WaveformSettings) {
-    const waveSurfer = WaveSurfer.create({
+    this.waveSurfer = WaveSurfer.create({
       ...waveformSettings
     });
 
@@ -50,8 +52,14 @@ export class AudioAnalyserService {
     fileReader.readAsDataURL(blobAudioURL);
 
     fileReader.onload = (ev: ProgressEvent) => {
-      waveSurfer.load(fileReader.result);
+      this.waveSurfer.load(fileReader.result);
     };
+  }
+
+  clearWaveForm() {
+    if (this.waveSurfer) {
+      this.waveSurfer.destroy();
+    }
   }
 
   updateAudioSourceURL(audioSourceURL: File) {

@@ -17,11 +17,17 @@ export class AnalysisResultComponent implements OnInit {
 
   ngOnInit() {}
 
-  showWaveform() {
+  updateWaveForm() {
+    this.clearWaveForm();
     this.audioAnalyserService.displayWaveForm({
       waveformColor: 'violet',
       container: '#waveform',
-      progressColor: 'purple'
+      progressColor: 'purple',
+      interact: false
     });
+  }
+
+  private clearWaveForm() {
+    this.audioAnalyserService.clearWaveForm();
   }
 }
