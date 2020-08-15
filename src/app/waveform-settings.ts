@@ -1,6 +1,7 @@
 export interface WaveformSettings {
-  waveformColor: string;
+  waveColor?: string;
   container: string;
-  progressColor: string;
+  progressColor?: string;
   interact: boolean;
+  backgroundColor?: string;
 }

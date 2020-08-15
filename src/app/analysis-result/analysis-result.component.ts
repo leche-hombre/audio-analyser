@@ -24,10 +24,9 @@ export class AnalysisResultComponent implements OnInit {
   updateWaveForm() {
     this.clearWaveForm();
     this.audioAnalyserService.displayWaveForm({
-      waveformColor: 'violet',
       container: '#waveform',
-      progressColor: 'purple',
-      interact: false
+      interact: false,
+      waveColor: '#f745db'
     });
   }
 
