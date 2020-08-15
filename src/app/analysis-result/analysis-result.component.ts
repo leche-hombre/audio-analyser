@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AudioAnalysis} from '../audio-analysis';
 import {AudioAnalyserService} from '../audio-analyser.service';
+import {DefaultAnalysis} from '../default-analysis';
 
 @Component({
   selector: 'app-analysis-result',
@@ -9,21 +10,21 @@ import {AudioAnalyserService} from '../audio-analyser.service';
 })
 export class AnalysisResultComponent implements OnInit {
 
-  analysis: AudioAnalysis;
+  analysis: AudioAnalysis = DefaultAnalysis;
 
   constructor(private audioAnalyserService: AudioAnalyserService) {
   }
 
   ngOnInit() {
-    this.audioAnalyserService.audioFile.subscribe(() => {
+    this.audioAnalyserService.audioFile.subscribe(async () => {
       // TODO: Prevent this from happening until the first audio file is available
-      this.updateAudioInfo();
+      await this.updateAudioInfo();
       this.updateWaveForm();
     });
   }
 
-  updateAudioInfo() {
-    this.analysis = this.audioAnalyserService.analyseAudioFile();
+  async updateAudioInfo() {
+    this.analysis = await this.audioAnalyserService.analyseAudioFile();
   }
 
   updateWaveForm() {

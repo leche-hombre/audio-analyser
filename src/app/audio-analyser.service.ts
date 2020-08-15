@@ -5,7 +5,7 @@ import WaveSurfer from 'wavesurfer.js';
 import {WaveformSettings} from './waveform-settings';
 import {BehaviorSubject, Observable, ReplaySubject, Subject} from 'rxjs';
 import {FileUtils} from './file-utils';
-
+import * as MusicTempo from 'music-tempo';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,10 +16,10 @@ export class AudioAnalyserService {
 
   constructor(private fileUtils: FileUtils) {}
 
-  analyseAudioFile(): AudioAnalysis {
+  async analyseAudioFile(): Promise<AudioAnalysis> {
     return {
+      bpm: await this.getBeatsPerMinute(),
       title: this.getTitleFromFilename(),
-      bpm: this.getBeatsPerMinute(),
       key: this.getKey()
     };
   }
@@ -28,12 +28,43 @@ export class AudioAnalyserService {
     return this.fileUtils.removeFileExtension(this.audioFile.value.name);
   }
 
-  getArtist(): string {
-    return DefaultAnalysis.artist;
+  async getBeatsPerMinute(): Promise<number> {
+    const audioContext = new AudioContext();
+    const audioArrayBuffer = await this.readFileAudioFileAsArrayBuffer(this.audioFile.value);
+    const audioBuffer = await audioContext.decodeAudioData(audioArrayBuffer);
+    const bpm = Math.round(this.calculateBPM(audioBuffer).tempo);
+    console.log(`BEATS PER MINUTE: ${bpm}`);
+    return bpm;
   }
 
-  getBeatsPerMinute(): number {
-    return DefaultAnalysis.bpm;
+  async readFileAudioFileAsArrayBuffer(file: File): Promise<ArrayBuffer> {
+    return new Promise<ArrayBuffer>((resolve) => {
+      const fileReader = new FileReader();
+      fileReader.onload = (ev: ProgressEvent) => {
+        resolve(fileReader.result as ArrayBuffer);
+      };
+      fileReader.readAsArrayBuffer(file);
+    });
+  }
+
+
+  private calculateBPM(audioBuffer: AudioBuffer): MusicTempo {
+
+    let audioData = [];
+
+    if (audioBuffer.numberOfChannels === 2) {
+    const firstChannel = audioBuffer.getChannelData(0);
+    const secondChannel = audioBuffer.getChannelData(1);
+
+    for (let i = 0; i < audioBuffer.length; i++) {
+      audioData[i] = (firstChannel[i] + secondChannel[i]) / 2;
+    }
+
+    } else {
+      audioData = [...audioBuffer.getChannelData(0)];
+    }
+
+    return new MusicTempo(audioData);
   }
 
   getKey(): string {
@@ -45,10 +76,10 @@ export class AudioAnalyserService {
       ...waveformSettings
     });
 
-    const blobAudioURL = this.audioFile.value;
+    const audioFile = this.audioFile.value;
 
     const fileReader = new FileReader();
-    fileReader.readAsDataURL(blobAudioURL);
+    fileReader.readAsDataURL(audioFile);
 
     fileReader.onload = (ev: ProgressEvent) => {
       this.waveSurfer.load(fileReader.result);

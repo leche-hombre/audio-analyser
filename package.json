@@ -22,14 +22,15 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "component": "1.1.0",
+    "file-to-array-buffer": "1.0.0",
     "hammerjs": "2.0.8",
+    "music-tempo": "^1.0.3",
+    "rxjs": "^6.4.0",
     "tslib": "1.10.0",
-    "zone.js": "~0.9.1",
     "typescript": "~3.5.3",
     "waveform-data": "3.3.2",
     "wavesurfer.js": "^4.0.1",
-    "rxjs": "^6.4.0",
-    "file-to-array-buffer": "1.0.0"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.28",
