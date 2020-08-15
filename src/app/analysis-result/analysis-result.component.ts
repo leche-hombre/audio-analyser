@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {DefaultAnalysis} from '../default-analysis';
 import {AudioAnalysis} from '../audio-analysis';
 import {AudioAnalyserService} from '../audio-analyser.service';
 
@@ -19,7 +18,7 @@ export class AnalysisResultComponent implements OnInit {
   ngOnInit() {}
 
   showWaveform() {
-    this.audioAnalyserService.displayWaveForm('/Users/jacobmontgomery/Documents/Music/House/Carl Cox - Nexus.mp3', {
+    this.audioAnalyserService.displayWaveForm({
       waveformColor: 'violet',
       container: '#waveform',
       progressColor: 'purple'

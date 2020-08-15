@@ -3,11 +3,14 @@ import {DefaultAnalysis} from './default-analysis';
 import {Injectable} from '@angular/core';
 import WaveSurfer from 'wavesurfer.js';
 import {WaveformSettings} from './waveform-settings';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AudioAnalyserService {
+
+  private audioSourceURL: BehaviorSubject<File> = new BehaviorSubject(new File([], ''));
 
   constructor() {}
 
@@ -36,14 +39,23 @@ export class AudioAnalyserService {
     return DefaultAnalysis.key;
   }
 
-  displayWaveForm(audioFilePath: string, waveformSettings: WaveformSettings) {
+  displayWaveForm(waveformSettings: WaveformSettings) {
     const waveSurfer = WaveSurfer.create({
       ...waveformSettings
     });
-    waveSurfer.load(audioFilePath);
-    waveSurfer.on('ready', () => {
-      waveSurfer.play();
-    });
+
+    const blobAudioURL = this.audioSourceURL.value;
+
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(blobAudioURL);
+
+    fileReader.onload = (ev: ProgressEvent) => {
+      waveSurfer.load(fileReader.result);
+    };
+  }
+
+  updateAudioSourceURL(audioSourceURL: File) {
+    this.audioSourceURL.next(audioSourceURL);
   }
 
 }
