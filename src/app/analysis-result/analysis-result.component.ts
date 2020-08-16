@@ -19,7 +19,7 @@ export class AnalysisResultComponent implements OnInit {
     this.audioAnalyserService.audioFile.subscribe(async () => {
       // TODO: Prevent this from happening until the first audio file is available
       await this.updateAudioInfo();
-      this.updateWaveForm();
+      await this.updateWaveForm();
     });
   }
 
@@ -27,9 +27,9 @@ export class AnalysisResultComponent implements OnInit {
     this.analysis = await this.audioAnalyserService.analyseAudioFile();
   }
 
-  updateWaveForm() {
+  async updateWaveForm() {
     this.clearWaveForm();
-    this.audioAnalyserService.displayWaveForm({
+    await this.audioAnalyserService.displayWaveForm({
       container: '#waveform',
       interact: false,
       waveColor: '#f745db'
