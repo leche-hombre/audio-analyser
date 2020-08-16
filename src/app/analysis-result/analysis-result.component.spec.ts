@@ -13,7 +13,7 @@ describe('AnalysisResultComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(() => { 
     fixture = TestBed.createComponent(AnalysisResultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
